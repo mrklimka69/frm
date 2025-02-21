@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+
+    <!-- <section class="header-section">
+
+    </section> -->
+
+    <section class="main-page">
+      <form action="#" class="formToSend" name="submit-to-google-sheet">
+        <h2 class="form-login-text">Login</h2>
+        <input
+          class="form-login-input"
+          type="text"
+          name="Name"
+          id="Name"
+          autocomplete="off"
+          placeholder="Name"
+          required
+        />
+        <input
+          class="form-login-input"
+          type="email"
+          name="Email"
+          id="Email"
+          autocomplete="off"
+          placeholder="Email"
+          required
+        />
+        <input
+          class="form-login-input"
+          type="password"
+          name="Password"
+          id="Password"
+          autocomplete="off"
+          placeholder="Password"
+          required
+        />
+        <input
+          class="form-login-input"
+          type="tel"
+          id="phone"
+          name="PhoneNumber"
+          placeholder="Phone number"
+          required
+        />
+
+        <button class="form-login-btn" type="submit">Send</button>
+
+        <span id="sendText" class="form-login-result-text"></span>
+      </form>
+    </section>
+
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbzFsc4qXJ5REsQkAQ4s6ddacM_D2fb2nIapESOc2O4ciED5iU3p2CqQGrRfn-CIN01x/exec";
+      const form = document.forms["submit-to-google-sheet"];
+      const sendText = document.getElementById("sendText");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            sendText.style.color = "green";
+            sendText.innerHTML = "Thank you!";
+
+            setTimeout(function () {
+              sendText.innerHTML = "";
+            }, 3000);
+            form.reset();
+          })
+          .catch((error) => {
+            sendText.style.color = "red";
+            sendText.innerHTML = "Something went wrong(";
+          });
+      });
+    </script>
+  </body>
+</html>
